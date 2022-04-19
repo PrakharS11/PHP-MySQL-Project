@@ -1,8 +1,8 @@
 <?php
     session_start();
-
+    
     $userloginid=$_SESSION["userid"] = $_GET['userlogid'];
-    // echo $_SESSION["userid"];
+    
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,17 +19,16 @@
     </head>
     
     <body>
-
         <?php
-            include("data_class.php");
+        include("data_class.php");
         ?>
         <div class="container">
+            
             <div class="innerdiv">
                 <div class="row"><img class="imglogo" src="images/logo22.png"/></div>
                 <div class="leftinnerdiv">
                     
-                    <a href="index.php"><Button class="greenbtn" > LOGOUT</Button></a>
-                    <Button class="greenbtn" onclick="openpart('myaccount')"> Update</Button>
+                    <a href="logout.php"><Button class="greenbtn" > LOGOUT</Button></a>
                 </div>
 
 
@@ -54,33 +53,17 @@
                         $table.="<td>$row[5]</td>";
                         $table.="<td>$row[6]</td>";
                         $table.="<td>$row[7]</td>";
-                        $table.="<td>$row[8]</td>";
+                        $table.="<td>$row[8]LPA</td>";
                         $table.="</tr>";
                        
                     }
                     $table.="</table>";
 
                     echo $table;
-
                 ?>
-                
-
-
 
             </div>
         </div>
 
-
-
-        <script>
-            function openpart(portion) {
-            var i;
-            var x = document.getElementsByClassName("portion");
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";  
-            }
-            document.getElementById(portion).style.display = "block";  
-            }
-        </script>
     </body>
 </html>

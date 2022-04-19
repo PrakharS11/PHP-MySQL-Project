@@ -3,10 +3,7 @@ include("db.php");
 
 class data extends db {
 
-    function __construct() {
-        echo "</br></br>";
-    }
-
+    
 
     function addnewuser($name,$email,$password,$type,$Expi,$Dep,$Edu,$salary){
         $this->name=$name;
@@ -49,12 +46,12 @@ class data extends db {
         $q="SELECT * FROM admin where email='$t1' and pwd='$t2'";
         $recordSet=$this->connection->query($q);
         $result=$recordSet->rowCount();
-
         if ($result > 0) {
+
             foreach($recordSet->fetchAll() as $row) {
                 $logid=$row['id'];
-                $_SESSION["adminid"] = $logid;
-                header("location: dashboard_admin.php?");
+                // $_SESSION["adminid"] = $logid;
+                header("location: dashboard_admin.php?adminlogid=$logid");
             }
         }
         else {
@@ -73,4 +70,13 @@ class data extends db {
         $data=$this->connection->query($q);
         return $data;
     }  
+    function delete($id){
+        $q="DELETE from emp where id='$id'";
+        if($this->connection->exec($q)){
+           header("Location:dashboard_admin.php?msg=done");
+        }
+        else{
+           header("Location:dashboard_admin.php?msg=fail");
+        }
+    }
 }
